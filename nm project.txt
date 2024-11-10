@@ -1,0 +1,47 @@
+# Simple Mental Health Assessment Script
+
+def get_response(question):
+    print(question)
+    print("Rate your response (1 - Strongly Disagree, 2 - Disagree, 3 - Neutral, 4 - Agree, 5 - Strongly Agree)")
+    while True:
+        try:
+            response = int(input("Your response (1-5): "))
+            if 1 <= response <= 5:
+                return response
+            else:
+                print("Please enter a number between 1 and 5.")
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 5.")
+
+def assess_mental_health():
+    questions = [
+        "I feel overwhelmed with my responsibilities.",
+        "I have trouble focusing on tasks.",
+        "I feel disconnected from people around me.",
+        "I find it difficult to relax.",
+        "I often feel anxious or stressed without a clear reason.",
+        "I am not getting enough quality sleep.",
+        "I have lost interest in activities I used to enjoy.",
+        "I feel emotionally exhausted."
+    ]
+
+    score = 0
+    for question in questions:
+        score += get_response(question)
+
+    # Calculate the average score
+    avg_score = score / len(questions)
+
+    # Provide assessment based on average score
+    print("\nAssessment Result:")
+    if avg_score <= 2:
+        print("Low level of distress. You seem to be doing well. Keep up with your healthy habits!")
+    elif avg_score <= 3.5:
+        print("Moderate level of distress. Some stress is present, but it seems manageable. Consider mindfulness exercises or talking to friends.")
+    else:
+        print("High level of distress. You might benefit from talking to a mental health professional.")
+
+# Run the assessment
+if __name__ == "__main__":
+    print("Welcome to the Mental Health Self-Assessment Tool\n")
+    assess_mental_health()
